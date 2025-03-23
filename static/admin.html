@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Library Management System</title>
+  <style>
+nav {
+  background: #333;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: right;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; background: #f9f9f9; }
+    h1, h2 { color: #333; }
+    input, button { padding: 8px; margin: 5px 0; width: 100%; }
+    #book-form, #logout-btn { display: none; }
+    .book-entry { background: #fff; padding: 10px; margin: 10px 0; border-radius: 5px; box-shadow: 0 0 5px #ddd; }
+    button.action { width: auto; margin-left: 5px; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="#" id="nav-logout" onclick="logout()">🚪 Logout</a>
+</nav>
+
+  <h1>📚 Library System</h1>
+
+  <div id="login-section">
+    <h2>Admin Login</h2>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <div id="logout-section">
+    <button id="logout-btn">Logout</button>
+  </div>
+
+  <div id="book-form">
+    <h2>Add New Book</h2>
+    <form id="add-book-form">
+      <input type="text" id="title" placeholder="Book Title" required />
+      <input type="text" id="author" placeholder="Author" required />
+      <input type="text" id="isbn" placeholder="ISBN" required />
+      <input type="date" id="publication_date" required />
+      <button type="submit">Add Book</button>
+    </form>
+  </div>
+
+  <h2>All Books</h2>
+  <div id="book-list">Loading books...</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

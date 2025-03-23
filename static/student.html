@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student - Library</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 40px auto; }
+    nav { background: #333; padding: 10px; margin-bottom: 20px; text-align: right; }
+    nav a { color: white; text-decoration: none; margin-left: 15px; }
+    .book-entry {
+      background: #f0f0f0;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">🏠 Home</a>
+  </nav>
+
+  <h1>📘 Student View - Book List</h1>
+  <div id="book-list">Loading books...</div>
+
+  <script>
+    async function fetchBooks() {
+      try {
+        const res = await fetch("http://localhost:8000/api/books/");
+        const books = await res.json();
+        const list = document.getElementById("book-list");
+        list.innerHTML = "";
+
+        if (!books.length) {
+          list.innerHTML = "<p>No books found.</p>";
+          return;
+        }
+
+        books.forEach((book) => {
+          const div = document.createElement("div");
+          div.className = "book-entry";
+          div.innerHTML = `
+            <b>${book.title}</b> by ${book.author} <br>
+            ISBN: ${book.isbn}<br>
+            Published: ${book.publication_date}
+          `;
+          list.appendChild(div);
+        });
+      } catch (error) {
+        console.error("Error loading books:", error);
+        document.getElementById("book-list").innerHTML = "Error loading books.";
+      }
+    }
+
+    window.onload = fetchBooks;
+  </script>
+</body>
+</html>
